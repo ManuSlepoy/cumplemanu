@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Flappy Superman</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="flappy.css">
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="400" height="500"></canvas>
+        <div id="ui-layer">
+            <div id="score-display">0</div>
+            <div id="start-screen">
+                <h1>Flappy Superman</h1>
+                <p>Toca la pantalla o presiona ESPACIO para volar</p>
+                <button id="start-btn">JUGAR</button>
+                <a href="index.html" class="back-link" style="margin-top: 30px;">Volver a la invitación</a>
+            </div>
+            <div id="game-over-screen" class="hidden">
+                <h1>¡Game Over!</h1>
+                <p>Puntaje: <span id="final-score">0</span></p>
+                <button id="restart-btn">Jugar de Nuevo</button>
+                <br>
+                <a href="index.html" class="back-link">Volver a la invitación</a>
+            </div>
+        </div>
+    </div>
+    <script src="flappy.js"></script>
+</body>
+</html>
