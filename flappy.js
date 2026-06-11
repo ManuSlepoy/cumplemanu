@@ -23,14 +23,14 @@ const superman = {
     x: 50,
     y: 150,
     width: 80,  // Increased size
-    height: 60, // Increased size
+    height: 30, // Increased size
     velocity: 0,
     gravity: 0.25,
     jump: -5.5,
     draw() {
-        if(supermanSprite) {
+        if (supermanSprite) {
             ctx.drawImage(supermanSprite, this.x, this.y, this.width, this.height);
-        } else if(supermanImg.complete && supermanImg.naturalHeight !== 0) {
+        } else if (supermanImg.complete && supermanImg.naturalHeight !== 0) {
             ctx.drawImage(supermanImg, this.x, this.y, this.width, this.height);
         } else {
             // Fallback just in case image fails to load
@@ -60,16 +60,16 @@ const pipes = {
     draw() {
         for (let i = 0; i < this.items.length; i++) {
             let p = this.items[i];
-            
+
             // Draw pipes (kryptonite green color for Superman)
-            ctx.fillStyle = '#2ECC71'; 
+            ctx.fillStyle = '#2ECC71';
             ctx.strokeStyle = '#27AE60';
             ctx.lineWidth = 4;
 
             // Top pipe
             ctx.fillRect(p.x, 0, this.width, p.top);
             ctx.strokeRect(p.x, 0, this.width, p.top);
-            
+
             // Bottom pipe
             ctx.fillRect(p.x, canvas.height - p.bottom, this.width, p.bottom);
             ctx.strokeRect(p.x, canvas.height - p.bottom, this.width, p.bottom);
@@ -98,13 +98,13 @@ const pipes = {
             const hitMarginY = 5;
 
             // Check top pipe
-            if (superman.x + superman.width - hitMarginX > p.x && 
+            if (superman.x + superman.width - hitMarginX > p.x &&
                 superman.x + hitMarginX < p.x + this.width &&
                 superman.y + hitMarginY < p.top) {
                 gameOver();
             }
             // Check bottom pipe
-            if (superman.x + superman.width - hitMarginX > p.x && 
+            if (superman.x + superman.width - hitMarginX > p.x &&
                 superman.x + hitMarginX < p.x + this.width &&
                 superman.y + superman.height - hitMarginY > canvas.height - p.bottom) {
                 gameOver();
@@ -138,7 +138,7 @@ function drawBackground() {
 function update() {
     superman.update();
     pipes.update();
-    
+
     // Check ground or roof collision
     if (superman.y + superman.height >= canvas.height || superman.y <= 0) {
         gameOver();
@@ -179,8 +179,8 @@ function gameOver() {
 
 // Input handling
 function jump(e) {
-    if(e.type === 'keydown' && e.code !== 'Space' && e.code !== 'ArrowUp') return;
-    
+    if (e.type === 'keydown' && e.code !== 'Space' && e.code !== 'ArrowUp') return;
+
     if (isPlaying) {
         superman.flap();
     } else if (!gameOverScreen.classList.contains('hidden') || !startScreen.classList.contains('hidden')) {
@@ -193,7 +193,7 @@ document.addEventListener('keydown', jump);
 canvas.addEventListener('touchstart', (e) => {
     e.preventDefault(); // Prevent scrolling on mobile tap
     jump(e);
-}, {passive: false});
+}, { passive: false });
 
 startBtn.addEventListener('click', startGame);
 restartBtn.addEventListener('click', startGame);
@@ -205,12 +205,12 @@ function removeWhiteBackground(img) {
     tempCanvas.width = img.naturalWidth || img.width;
     tempCanvas.height = img.naturalHeight || img.height;
     if (tempCanvas.width === 0 || tempCanvas.height === 0) return null;
-    
+
     const tempCtx = tempCanvas.getContext('2d', { willReadFrequently: true });
     tempCtx.drawImage(img, 0, 0);
     const imgData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
     const data = imgData.data;
-    
+
     // Asumimos que la esquina superior izquierda es el color de fondo (usualmente blanco)
     const bgR = data[0];
     const bgG = data[1];
@@ -218,14 +218,14 @@ function removeWhiteBackground(img) {
 
     for (let i = 0; i < data.length; i += 4) {
         // Tolerancia para quitar el fondo
-        if (Math.abs(data[i] - bgR) < 25 && 
-            Math.abs(data[i+1] - bgG) < 25 && 
-            Math.abs(data[i+2] - bgB) < 25) {
-            data[i+3] = 0; // Hacer transparente
+        if (Math.abs(data[i] - bgR) < 25 &&
+            Math.abs(data[i + 1] - bgG) < 25 &&
+            Math.abs(data[i + 2] - bgB) < 25) {
+            data[i + 3] = 0; // Hacer transparente
         }
     }
     tempCtx.putImageData(imgData, 0, 0);
-    return tempCanvas; 
+    return tempCanvas;
 }
 
 // Initial draw before game starts
