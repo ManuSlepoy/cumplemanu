@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡El Cumple de Manu!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-pattern"></div>
+    <div class="container">
+
+        <!-- STEP 1: Welcome -->
+        <div id="step-1" class="card active">
+            <h1>Es el cumple de Manu!!!!!</h1>
+            <p>Si estas viendo esto es porque te quiero mucho</p>
+            <form id="form-welcome">
+                <div class="input-group">
+                    <label for="name">Tu Nombre</label>
+                    <input type="text" id="name" required placeholder="Ej: Peter Parker">
+                </div>
+                <div class="input-group">
+                    <label for="gender">Género</label>
+                    <select id="gender" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="male">Masculino</option>
+                        <option value="female">Femenino</option>
+                        <option value="other">Otro</option>
+                        <option value="nomeacuerdo">No me acuerdo</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Siguiente</button>
+            </form>
+        </div>
+
+        <!-- STEP 2: Attendance -->
+        <div id="step-2" class="card hidden">
+            <h1 class="greeting">¡Hola <span id="display-name"></span>!</h1>
+            <h2>¿Vas a venir al cumple?</h2>
+            <div class="button-group">
+                <button id="btn-yes" class="btn btn-success">SI</button>
+                <button id="btn-no" class="btn btn-danger">NO</button>
+            </div>
+
+            <!-- Link editable por el usuario -->
+            <input type="hidden" id="youtube-link" value="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+        </div>
+
+        <!-- STEP 3: Questionnaire -->
+        <div id="step-3" class="card hidden">
+            <h2>¡Genial! Ayúdame a armar la fiesta</h2>
+            <form id="form-questionnaire">
+
+                <div class="input-group">
+                    <label for="activities">Que te gustaria hacer en el cumple?</label>
+                    <textarea id="activities" rows="3" placeholder="Juegos, torneos, etc..." required></textarea>
+                    <div id="activities-error" class="error-msg hidden">Tu propuesta contiene palabras no permitidas.
+                    </div>
+                </div>
+
+                <!-- Palabras prohibidas editables -->
+                <input type="hidden" id="forbidden-words" value="origa,orgía,orgy,sexo,sex,porno,porn">
+
+                <div class="input-group">
+                    <label>Proponé 3 canciones que estén en spotify y te gustaria escuchar:</label>
+                    <input type="text" id="song-1" placeholder="Canción 1" required>
+                    <input type="text" id="song-2" placeholder="Canción 2" required class="mt-2">
+                    <input type="text" id="song-3" placeholder="Canción 3" required class="mt-2">
+                </div>
+
+                <div class="input-group">
+                    <label for="food">¿Qué te gustaría comer?</label>
+                    <textarea id="food" rows="2" placeholder="Pizza, hamburguesas, snacks..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Enviar Confirmación</button>
+            </form>
+        </div>
+
+        <!-- STEP 4: Success -->
+        <div id="step-4" class="card hidden text-center">
+            <h1>¡Gracias por confirmar!</h1>
+            <p>Te mando un abrazo y nos vemos el en el cumple!!!</p>
+            <div class="success-icon">🕷️</div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
