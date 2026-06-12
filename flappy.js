@@ -95,7 +95,7 @@ const pipes = {
             // Collision detection
             // Margins for a more forgiving hitbox
             const hitMarginX = 5;
-            const hitMarginY = 10;
+            const hitMarginY = 8;
 
             // Check top pipe
             if (superman.x + superman.width - hitMarginX > p.x &&
